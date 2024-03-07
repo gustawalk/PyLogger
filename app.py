@@ -72,12 +72,13 @@ def send_email():
 
 def main():
     global file
+    global tempo
 
     tempo = 0
     while True:
         try:
             # Timer + ou - funcional para o envio do email
-            if tempo < 50:
+            if tempo < 1000:
                 tempo += 1
             else:
                 file.close()
