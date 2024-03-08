@@ -1,7 +1,12 @@
 # PyLogger
 
 <div class="texto">
-  <h6 class="subtexto">Esse projeto foi criado apenas para adquirir conhecimento nessa área, foi criado inteiramente utilizando Python e suas bibliotecas. Não me responsabilizo por qualquer atividade que façam com este código.</h6>
+  <h6 class="subtexto">Esse projeto foi criado apenas para adquirir conhecimento nessa área, foi criado inteiramente utilizando Python e suas bibliotecas. Não me responsabilizo por qualquer atividade que realizem com auxílio deste código.</h6>
+  <hr>
+  <h2>Bibliotecas externas</h2>
+  <h6 class="subtexto">
+    Keyboard - pip install keyboard
+  </h6>
   <hr>
   <h2>Método de Uso</h2>
   <h6 class="subtexto">Após abrir o arquivo .py na sua IDE/Editor de texto, só é necessário configurar a parte do email para ser usável. Precisando apenas de um email de envio junto com sua senha, e um email de recebimento.
